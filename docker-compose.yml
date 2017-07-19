@@ -30,6 +30,7 @@ services:
     ports:
       - 50201:9000
     volumes:
+      - ./php-fpm/conf:/usr/local/etc
       - ${DATA_PATH}/www:/var/www/html
       - ${DATA_PATH}/log/php-fpm:/var/log/php
 
