@@ -2,6 +2,8 @@ FROM php:7.1.7-fpm
 
 MAINTAINER Michael Chi <chicong@outlook.com>
 
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
 # redis ext
 RUN cd /tmp \
     && curl -L -o redis-3.1.3.tgz https://pecl.php.net/get/redis-3.1.3.tgz \
