@@ -22,14 +22,15 @@ services:
     ports:
       - 50501:6379
 
-# php-fpm-56
+# php56-fpm
 
-  php-fpm-56:
-    build: ./php-fpm-56
-    image: comoyi/php-fpm-56:0.0.1
+  php56-fpm:
+    build: ./php56-fpm
+    image: comoyi/php56-fpm:0.0.1
     ports:
-      - 50202:9000
+      - 50201:9000
     volumes:
+      - ./php56-fpm/conf:/usr/local/etc:ro
       - ${DATA_PATH}/www:/var/www/html
       - ${DATA_PATH}/log/php-fpm:/var/log/php
 
@@ -39,7 +40,7 @@ services:
     build: ./php-fpm
     image: comoyi/php-fpm:0.0.1
     ports:
-      - 50201:9000
+      - 50202:9000
     volumes:
       - ./php-fpm/conf:/usr/local/etc:ro
       - ${DATA_PATH}/www:/var/www/html
