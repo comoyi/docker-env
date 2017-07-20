@@ -2,26 +2,6 @@ version: '2'
 
 services:
 
-# nginx
-
-  nginx:
-    build: ./nginx
-    image: comoyi/nginx:0.0.1
-    ports:
-      - 80:80
-    volumes:
-      - ./nginx/conf:/etc/nginx:ro
-      - ${DATA_PATH}/www:/var/www/html
-      - ${DATA_PATH}/log/nginx:/var/log/nginx
-
-# redis
-
-  redis:
-    build: ./redis
-    image: comoyi/redis:0.0.1
-    ports:
-      - 50501:6379
-
 # php56-fpm
 
   php56-fpm:
@@ -45,3 +25,23 @@ services:
       - ./php-fpm/conf:/usr/local/etc:ro
       - ${DATA_PATH}/www:/var/www/html
       - ${DATA_PATH}/log/php-fpm:/var/log/php
+
+# nginx
+
+  nginx:
+    build: ./nginx
+    image: comoyi/nginx:0.0.1
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx/conf:/etc/nginx:ro
+      - ${DATA_PATH}/www:/var/www/html
+      - ${DATA_PATH}/log/nginx:/var/log/nginx
+
+# redis
+
+  redis:
+    build: ./redis
+    image: comoyi/redis:0.0.1
+    ports:
+      - 50501:6379

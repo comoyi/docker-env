@@ -36,3 +36,13 @@ RUN cd /tmp \
     && ./configure \
     && make \
     && make install
+
+# swoole ext
+RUN cd /tmp \
+    && curl -L -o swoole-1.9.16.tgz https://pecl.php.net/get/swoole-1.9.16.tgz \
+    && tar zxvf swoole-1.9.16.tgz \
+    && cd swoole-1.9.16 \
+    && phpize \
+    && ./configure \
+    && make \
+    && make install
