@@ -14,6 +14,16 @@ RUN cd /tmp \
     && make \
     && make install
 
+# xdebug
+RUN cd /tmp \
+    && curl -L -o xdebug-2.5.5.tgz https://pecl.php.net/get/xdebug-2.5.5.tgz \
+    && tar zxvf xdebug-2.5.5.tgz \
+    && cd xdebug-2.5.5 \
+    && phpize \
+    && ./configure \
+    && make \
+    && make install
+
 # redis ext
 RUN cd /tmp \
     && curl -L -o redis-3.1.3.tgz https://pecl.php.net/get/redis-3.1.3.tgz \
