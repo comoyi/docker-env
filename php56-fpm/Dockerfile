@@ -2,6 +2,10 @@ FROM php:5.6.31-fpm
 
 MAINTAINER Michael Chi <chicong@outlook.com>
 
+RUN usermod -u 1000 www-data
+
+RUN groupmod -g 1000 www-data
+
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 # pdo_mysql
