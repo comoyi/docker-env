@@ -18,6 +18,17 @@ RUN cd /tmp \
     && make \
     && make install
 
+# for gd
+RUN apt-get update && apt-get install -y libpng-dev libfreetype6-dev
+
+# gd
+RUN cd /tmp \
+    && cd php-5.6.31/ext/gd \
+    && phpize \
+    && ./configure --with-freetype-dir \
+    && make \
+    && make install
+
 # xdebug
 RUN cd /tmp \
     && curl -L -o xdebug-2.5.5.tgz https://pecl.php.net/get/xdebug-2.5.5.tgz \
@@ -28,7 +39,7 @@ RUN cd /tmp \
     && make \
     && make install
 
-# redis ext
+# redis
 RUN cd /tmp \
     && curl -L -o redis-3.1.3.tgz https://pecl.php.net/get/redis-3.1.3.tgz \
     && tar zxvf redis-3.1.3.tgz \
@@ -38,10 +49,10 @@ RUN cd /tmp \
     && make \
     && make install
 
-# for mongodb ext
+# for mongodb
 RUN apt-get update && apt-get install -y libssl-dev
 
-# mongodb ext
+# mongodb
 RUN cd /tmp \
     && curl -L -o mongodb-1.2.9.tgz https://pecl.php.net/get/mongodb-1.2.9.tgz \
     && tar zxvf mongodb-1.2.9.tgz \
@@ -51,7 +62,7 @@ RUN cd /tmp \
     && make \
     && make install
 
-# swoole ext
+# swoole
 RUN cd /tmp \
     && curl -L -o swoole-1.9.16.tgz https://pecl.php.net/get/swoole-1.9.16.tgz \
     && tar zxvf swoole-1.9.16.tgz \
