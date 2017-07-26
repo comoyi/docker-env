@@ -64,6 +64,14 @@ RUN cd /tmp \
     && make \
     && make install
 
+# sysvsem
+RUN cd /tmp \
+    && cd php-5.6.31/ext/sysvsem \
+    && phpize \
+    && ./configure \
+    && make \
+    && make install
+
 # shmop
 RUN cd /tmp \
     && cd php-5.6.31/ext/shmop \
