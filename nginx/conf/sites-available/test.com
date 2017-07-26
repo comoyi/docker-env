@@ -1,7 +1,7 @@
 server {
     listen 80;
     listen 443 ssl;
-    server_name test.dev;
+    server_name test.com;
     root "/var/www/html/test";
 
     index index.html index.htm index.php;

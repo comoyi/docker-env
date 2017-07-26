@@ -1,7 +1,7 @@
 server {
     listen 80;
     listen 443 ssl;
-    server_name php71.dev;
+    server_name php71.com;
     root "/var/www/html/php71";
 
     index index.html index.htm index.php;
