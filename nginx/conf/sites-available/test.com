@@ -1,7 +1,7 @@
 server {
     listen 80;
     listen 443 ssl;
-    server_name test.com;
+    server_name test.dev;
     root "/var/www/html/test";
 
     index index.html index.htm index.php;
@@ -22,18 +22,13 @@ server {
 
     client_max_body_size 100m;
 
-    location ~ \.php$ {
+    location ~ \.php {
         fastcgi_split_path_info ^(.+\.php)(/.+)$;
         fastcgi_pass php56-fpm:9000;
         fastcgi_index index.php;
         include fastcgi_params;
         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-        fastcgi_intercept_errors off;
-        fastcgi_buffer_size 16k;
-        fastcgi_buffers 4 16k;
-        fastcgi_connect_timeout 300;
-        fastcgi_send_timeout 300;
-        fastcgi_read_timeout 300;
+        fastcgi_param PATH_INFO $fastcgi_path_info;
     }
 
     location ~ /\.ht {

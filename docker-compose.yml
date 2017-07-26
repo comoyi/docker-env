@@ -11,8 +11,8 @@ services:
       - 50201:9000
     volumes:
       - ./php56-fpm/conf:/usr/local/etc:ro
-      - ${DATA_PATH}/www:/var/www/html
-      - ${DATA_PATH}/log/php-fpm:/var/log/php
+      - ${CODE_PATH}:/var/www/html
+      - ${LOG_PATH}/php-fpm:/var/log/php
 
 # php-fpm
 
@@ -23,8 +23,8 @@ services:
       - 50202:9000
     volumes:
       - ./php-fpm/conf:/usr/local/etc:ro
-      - ${DATA_PATH}/www:/var/www/html
-      - ${DATA_PATH}/log/php-fpm:/var/log/php
+      - ${CODE_PATH}:/var/www/html
+      - ${LOG_PATH}/php-fpm:/var/log/php
 
 # nginx
 
@@ -35,8 +35,8 @@ services:
       - 80:80
     volumes:
       - ./nginx/conf:/etc/nginx:ro
-      - ${DATA_PATH}/www:/var/www/html
-      - ${DATA_PATH}/log/nginx:/var/log/nginx
+      - ${CODE_PATH}:/var/www/html
+      - ${LOG_PATH}/nginx:/var/log/nginx
 
 # redis
 
