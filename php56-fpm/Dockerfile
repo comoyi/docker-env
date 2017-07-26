@@ -29,6 +29,17 @@ RUN cd /tmp \
     && make \
     && make install
 
+# for mcrypt
+RUN apt-get update && apt-get install -y libmcrypt-dev
+
+# mcrypt
+RUN cd /tmp \
+    && cd php-5.6.31/ext/mcrypt \
+    && phpize \
+    && ./configure \
+    && make \
+    && make install
+
 # xdebug
 RUN cd /tmp \
     && curl -L -o xdebug-2.5.5.tgz https://pecl.php.net/get/xdebug-2.5.5.tgz \
