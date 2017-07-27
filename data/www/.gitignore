@@ -4,3 +4,5 @@
 !php56/phpinfo.php
 !php71/
 !php71/phpinfo.php
+!test
+!test/*
