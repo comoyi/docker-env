@@ -1,24 +1,29 @@
 # docker environment
 
-## Setup step
-```
-# 1. clone
+## Setup
+
+Clone
+
+```sh
 git clone git@github.com:comoyi/docker-env.git
+```
 
-# 2. copy .env.example to .env
+Copy .env.example to .env
+
+```sh
 cp .env.example .env
-
-# 3. run
-docker-compose up
-
-# open browser and visit
 ```
 
 ## Usage
-```
-# up
-docker-compose up
 
-# rebuild and up
-docker-compose up --build
+Build
+
+```sh
+docker-compose build
+```
+
+Up
+
+```sh
+docker-compose up
 ```
