@@ -167,3 +167,5 @@ RUN cd /usr/local/src \
     && ./configure \
     && make \
     && make install
+
+RUN rm -rf /usr/local/src/*
