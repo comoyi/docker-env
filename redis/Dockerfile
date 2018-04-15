@@ -1,5 +1,5 @@
-FROM redis:3.0.7
+FROM redis:3.2.11
 
-MAINTAINER Michael Chi <chicong@outlook.com>
+LABEL maintainer="Michael Chi <chicong@outlook.com>"
 
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
