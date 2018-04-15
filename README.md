@@ -5,7 +5,7 @@
 Clone
 
 ```sh
-git clone git@github.com:comoyi/docker-env.git
+git clone https://github.com/comoyi/docker-env.git
 ```
 
 Copy .env.example to .env
