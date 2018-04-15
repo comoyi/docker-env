@@ -8,6 +8,12 @@ Clone
 git clone https://github.com/comoyi/docker-env.git
 ```
 
+Step into directory
+
+```sh
+cd docker-env
+```
+
 Copy .env.example to .env
 
 ```sh
