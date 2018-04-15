@@ -48,3 +48,22 @@ services:
     image: comoyi/redis:0.0.1
     ports:
       - ${REDIS_PORT}:6379
+
+# mysql
+
+  mysql:
+    build: ./mysql
+    image: comoyi/mysql:0.0.1
+    ports:
+      - ${MYSQL_PORT}:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+
+# rabbitmq
+
+  rabbitmq:
+    build: ./rabbitmq
+    image: comoyi/rabbitmq:0.0.1
+    ports:
+      - ${RABBITMQ_PORT}:5672
+      - ${RABBITMQ_MANAGEMENT_PORT}:15672
