@@ -1,5 +1,5 @@
-FROM nginx:1.12.0
+FROM nginx:1.12.2
 
-MAINTAINER Michael Chi <chicong@outlook.com>
+LABEL maintainer="Michael Chi <chicong@outlook.com>"
 
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
