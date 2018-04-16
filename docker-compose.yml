@@ -56,6 +56,9 @@ services:
     image: comoyi/mysql:0.0.1
     ports:
       - ${MYSQL_PORT}:3306
+    volumes:
+      - ${MYSQL_CONF_PATH}:/etc/mysql/conf.d
+      - ${MYSQL_DATA_PATH}:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
 
