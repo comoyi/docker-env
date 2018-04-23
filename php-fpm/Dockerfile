@@ -17,7 +17,9 @@ RUN apt-get update && apt-get install -y \
 # for soap
     libxml2-dev \
 # for mongodb
-    libssl-dev
+    libssl-dev \
+# for swoole $server->connections
+    libpcre3-dev
 
 # php
 RUN cd /usr/local/src \
