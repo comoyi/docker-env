@@ -1,4 +1,4 @@
-FROM php:7.1.16-fpm
+FROM php:7.1.17-fpm
 
 LABEL maintainer="Michael Chi <chicong@outlook.com>"
 
@@ -19,16 +19,20 @@ RUN apt-get update && apt-get install -y \
 # for mongodb
     libssl-dev \
 # for swoole $server->connections
-    libpcre3-dev
+    libpcre3-dev \
+# for geoip
+    geoip-bin geoip-database libgeoip-dev \
+# for memcached
+    libmemcached-dev
 
 # php
 RUN cd /usr/local/src \
-    && curl -L -o php-7.1.16.tar.gz http://php.net/get/php-7.1.16.tar.gz/from/this/mirror \
-    && tar zxvf php-7.1.16.tar.gz
+    && curl -L -o php-7.1.17.tar.gz http://php.net/get/php-7.1.17.tar.gz/from/this/mirror \
+    && tar zxvf php-7.1.17.tar.gz
 
 # gd
 RUN cd /usr/local/src \
-    && cd php-7.1.16/ext/gd \
+    && cd php-7.1.17/ext/gd \
     && phpize \
     && ./configure --with-freetype-dir \
     && make \
@@ -36,7 +40,7 @@ RUN cd /usr/local/src \
 
 # mcrypt
 RUN cd /usr/local/src \
-    && cd php-7.1.16/ext/mcrypt \
+    && cd php-7.1.17/ext/mcrypt \
     && phpize \
     && ./configure \
     && make \
@@ -44,7 +48,7 @@ RUN cd /usr/local/src \
 
 # bcmath
 RUN cd /usr/local/src \
-    && cd php-7.1.16/ext/bcmath \
+    && cd php-7.1.17/ext/bcmath \
     && phpize \
     && ./configure \
     && make \
@@ -52,7 +56,7 @@ RUN cd /usr/local/src \
 
 # pcntl
 RUN cd /usr/local/src \
-    && cd php-7.1.16/ext/pcntl \
+    && cd php-7.1.17/ext/pcntl \
     && phpize \
     && ./configure \
     && make \
@@ -60,7 +64,7 @@ RUN cd /usr/local/src \
 
 # gettext
 RUN cd /usr/local/src \
-    && cd php-7.1.16/ext/gettext \
+    && cd php-7.1.17/ext/gettext \
     && phpize \
     && ./configure \
     && make \
@@ -68,7 +72,7 @@ RUN cd /usr/local/src \
 
 # sysvsem
 RUN cd /usr/local/src \
-    && cd php-7.1.16/ext/sysvsem \
+    && cd php-7.1.17/ext/sysvsem \
     && phpize \
     && ./configure \
     && make \
@@ -76,7 +80,7 @@ RUN cd /usr/local/src \
 
 # shmop
 RUN cd /usr/local/src \
-    && cd php-7.1.16/ext/shmop \
+    && cd php-7.1.17/ext/shmop \
     && phpize \
     && ./configure \
     && make \
@@ -84,7 +88,7 @@ RUN cd /usr/local/src \
 
 # soap
 RUN cd /usr/local/src \
-    && cd php-7.1.16/ext/soap \
+    && cd php-7.1.17/ext/soap \
     && phpize \
     && ./configure \
     && make \
@@ -92,7 +96,7 @@ RUN cd /usr/local/src \
 
 # sockets
 RUN cd /usr/local/src \
-    && cd php-7.1.16/ext/sockets \
+    && cd php-7.1.17/ext/sockets \
     && phpize \
     && ./configure \
     && make \
@@ -100,7 +104,7 @@ RUN cd /usr/local/src \
 
 # zip
 RUN cd /usr/local/src \
-    && cd php-7.1.16/ext/zip \
+    && cd php-7.1.17/ext/zip \
     && phpize \
     && ./configure \
     && make \
@@ -108,7 +112,7 @@ RUN cd /usr/local/src \
 
 # xmlrpc
 RUN cd /usr/local/src \
-    && cd php-7.1.16/ext/xmlrpc \
+    && cd php-7.1.17/ext/xmlrpc \
     && phpize \
     && ./configure \
     && make \
@@ -116,7 +120,7 @@ RUN cd /usr/local/src \
 
 # pdo_mysql
 RUN cd /usr/local/src \
-    && cd php-7.1.16/ext/pdo_mysql \
+    && cd php-7.1.17/ext/pdo_mysql \
     && phpize \
     && ./configure \
     && make \
@@ -124,7 +128,17 @@ RUN cd /usr/local/src \
 
 # mysqli
 RUN cd /usr/local/src \
-    && cd php-7.1.16/ext/mysqli \
+    && cd php-7.1.17/ext/mysqli \
+    && phpize \
+    && ./configure \
+    && make \
+    && make install
+
+# stomp
+RUN cd /usr/local/src \
+    && curl -L -o stomp-2.0.1.tgz https://pecl.php.net/get/stomp-2.0.1.tgz \
+    && tar zxvf stomp-2.0.1.tgz \
+    && cd stomp-2.0.1 \
     && phpize \
     && ./configure \
     && make \
@@ -165,6 +179,36 @@ RUN cd /usr/local/src \
     && curl -L -o swoole-2.1.3.tgz https://pecl.php.net/get/swoole-2.1.3.tgz \
     && tar zxvf swoole-2.1.3.tgz \
     && cd swoole-2.1.3 \
+    && phpize \
+    && ./configure \
+    && make \
+    && make install
+
+# geoip
+RUN cd /usr/local/src \
+    && curl -L -o geoip-1.1.1.tgz https://pecl.php.net/get/geoip-1.1.1.tgz \
+    && tar zxvf geoip-1.1.1.tgz \
+    && cd geoip-1.1.1 \
+    && phpize \
+    && ./configure \
+    && make \
+    && make install
+
+# # memcache
+# RUN cd /usr/local/src \
+#     && curl -L -o memcache-2.2.7.tgz https://pecl.php.net/get/memcache-2.2.7.tgz \
+#     && tar zxvf memcache-2.2.7.tgz \
+#     && cd memcache-2.2.7 \
+#     && phpize \
+#     && ./configure \
+#     && make \
+#     && make install
+
+# memcached
+RUN cd /usr/local/src \
+    && curl -L -o memcached-3.0.4.tgz https://pecl.php.net/get/memcached-3.0.4.tgz \
+    && tar zxvf memcached-3.0.4.tgz \
+    && cd memcached-3.0.4 \
     && phpize \
     && ./configure \
     && make \
