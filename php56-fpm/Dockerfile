@@ -1,6 +1,6 @@
 FROM php:5.6.31-fpm
 
-MAINTAINER Michael Chi <chicong@outlook.com>
+LABEL maintainer="Michael Chi <chicong@outlook.com>"
 
 RUN usermod -u 1000 www-data
 
@@ -17,7 +17,9 @@ RUN apt-get update && apt-get install -y \
 # for soap
     libxml2-dev \
 # for mongodb
-    libssl-dev
+    libssl-dev \
+# for geoip
+    geoip-bin geoip-database libgeoip-dev
 
 # php
 RUN cd /tmp \
@@ -168,9 +170,9 @@ RUN cd /tmp \
 
 # swoole
 RUN cd /tmp \
-    && curl -L -o swoole-1.9.16.tgz https://pecl.php.net/get/swoole-1.9.16.tgz \
-    && tar zxvf swoole-1.9.16.tgz \
-    && cd swoole-1.9.16 \
+    && curl -L -o swoole-1.10.5.tgz https://pecl.php.net/get/swoole-1.10.5.tgz \
+    && tar zxvf swoole-1.10.5.tgz \
+    && cd swoole-1.10.5 \
     && phpize \
     && ./configure \
     && make \
@@ -191,6 +193,16 @@ RUN cd /tmp \
     && curl -L -o mongo-1.6.14.tgz https://pecl.php.net/get/mongo-1.6.14.tgz \
     && tar zxvf mongo-1.6.14.tgz \
     && cd mongo-1.6.14 \
+    && phpize \
+    && ./configure \
+    && make \
+    && make install
+
+# geoip
+RUN cd /tmp \
+    && curl -L -o geoip-1.1.1.tgz https://pecl.php.net/get/geoip-1.1.1.tgz \
+    && tar zxvf geoip-1.1.1.tgz \
+    && cd geoip-1.1.1 \
     && phpize \
     && ./configure \
     && make \
