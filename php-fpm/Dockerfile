@@ -11,7 +11,7 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 # anything required
 RUN apt-get update && apt-get install -y \
 # for gd
-    libpng-dev libfreetype6-dev \
+    libpng-dev libjpeg-dev libjpeg62-turbo-dev libfreetype6-dev \
 # for mcrypt
     libmcrypt-dev \
 # for soap
@@ -34,7 +34,10 @@ RUN cd /usr/local/src \
 RUN cd /usr/local/src \
     && cd php-7.1.17/ext/gd \
     && phpize \
-    && ./configure --with-freetype-dir \
+    && ./configure \
+    --with-freetype-dir \
+    --with-png-dir \
+    --with-jpeg-dir \
     && make \
     && make install
 
@@ -193,16 +196,6 @@ RUN cd /usr/local/src \
     && ./configure \
     && make \
     && make install
-
-# # memcache
-# RUN cd /usr/local/src \
-#     && curl -L -o memcache-2.2.7.tgz https://pecl.php.net/get/memcache-2.2.7.tgz \
-#     && tar zxvf memcache-2.2.7.tgz \
-#     && cd memcache-2.2.7 \
-#     && phpize \
-#     && ./configure \
-#     && make \
-#     && make install
 
 # memcached
 RUN cd /usr/local/src \
