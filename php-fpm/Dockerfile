@@ -21,7 +21,7 @@ RUN apt-get update && apt-get install -y \
 # for swoole $server->connections
     libpcre3-dev \
 # for geoip
-    geoip-bin geoip-database libgeoip-dev \
+    geoip-bin geoip-database geoip-database-extra libgeoip-dev \
 # for memcached
     libmemcached-dev
 
