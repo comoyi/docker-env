@@ -179,9 +179,9 @@ RUN cd /usr/local/src \
 
 # swoole
 RUN cd /usr/local/src \
-    && curl -L -o swoole-2.1.3.tgz https://pecl.php.net/get/swoole-2.1.3.tgz \
-    && tar zxvf swoole-2.1.3.tgz \
-    && cd swoole-2.1.3 \
+    && curl -L -o swoole-4.0.3.tgz https://pecl.php.net/get/swoole-4.0.3.tgz \
+    && tar zxvf swoole-4.0.3.tgz \
+    && cd swoole-4.0.3 \
     && phpize \
     && ./configure \
     && make \
