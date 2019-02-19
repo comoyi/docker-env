@@ -26,6 +26,18 @@ services:
       - ${CODE_PATH}:/var/www/html
       - ${LOG_PATH}/php-fpm:/var/log/php
 
+# php71-fpm
+
+  php71-fpm:
+    build: ./php71-fpm
+    image: comoyi/php71-fpm:0.0.1
+    ports:
+      - ${PHP71_PORT}:9000
+    volumes:
+      - ./php71-fpm/conf:/usr/local/etc:ro
+      - ${CODE_PATH}:/var/www/html
+      - ${LOG_PATH}/php71-fpm:/var/log/php
+
 # nginx
 
   nginx:

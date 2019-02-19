@@ -1,4 +1,4 @@
-FROM php:7.1.17-fpm
+FROM php:7.1.26-fpm
 
 LABEL maintainer="Michael Chi <chicong@outlook.com>"
 
@@ -27,12 +27,12 @@ RUN apt-get update && apt-get install -y \
 
 # php
 RUN cd /usr/local/src \
-    && curl -L -o php-7.1.17.tar.gz http://php.net/get/php-7.1.17.tar.gz/from/this/mirror \
-    && tar zxvf php-7.1.17.tar.gz
+    && curl -L -o php-7.1.26.tar.gz http://php.net/get/php-7.1.26.tar.gz/from/this/mirror \
+    && tar zxvf php-7.1.26.tar.gz
 
 # gd
 RUN cd /usr/local/src \
-    && cd php-7.1.17/ext/gd \
+    && cd php-7.1.26/ext/gd \
     && phpize \
     && ./configure \
     --with-freetype-dir \
@@ -43,7 +43,7 @@ RUN cd /usr/local/src \
 
 # mcrypt
 RUN cd /usr/local/src \
-    && cd php-7.1.17/ext/mcrypt \
+    && cd php-7.1.26/ext/mcrypt \
     && phpize \
     && ./configure \
     && make \
@@ -51,7 +51,7 @@ RUN cd /usr/local/src \
 
 # bcmath
 RUN cd /usr/local/src \
-    && cd php-7.1.17/ext/bcmath \
+    && cd php-7.1.26/ext/bcmath \
     && phpize \
     && ./configure \
     && make \
@@ -59,7 +59,7 @@ RUN cd /usr/local/src \
 
 # pcntl
 RUN cd /usr/local/src \
-    && cd php-7.1.17/ext/pcntl \
+    && cd php-7.1.26/ext/pcntl \
     && phpize \
     && ./configure \
     && make \
@@ -67,7 +67,7 @@ RUN cd /usr/local/src \
 
 # gettext
 RUN cd /usr/local/src \
-    && cd php-7.1.17/ext/gettext \
+    && cd php-7.1.26/ext/gettext \
     && phpize \
     && ./configure \
     && make \
@@ -75,7 +75,7 @@ RUN cd /usr/local/src \
 
 # sysvsem
 RUN cd /usr/local/src \
-    && cd php-7.1.17/ext/sysvsem \
+    && cd php-7.1.26/ext/sysvsem \
     && phpize \
     && ./configure \
     && make \
@@ -83,7 +83,7 @@ RUN cd /usr/local/src \
 
 # shmop
 RUN cd /usr/local/src \
-    && cd php-7.1.17/ext/shmop \
+    && cd php-7.1.26/ext/shmop \
     && phpize \
     && ./configure \
     && make \
@@ -91,7 +91,7 @@ RUN cd /usr/local/src \
 
 # soap
 RUN cd /usr/local/src \
-    && cd php-7.1.17/ext/soap \
+    && cd php-7.1.26/ext/soap \
     && phpize \
     && ./configure \
     && make \
@@ -99,7 +99,7 @@ RUN cd /usr/local/src \
 
 # sockets
 RUN cd /usr/local/src \
-    && cd php-7.1.17/ext/sockets \
+    && cd php-7.1.26/ext/sockets \
     && phpize \
     && ./configure \
     && make \
@@ -107,7 +107,7 @@ RUN cd /usr/local/src \
 
 # zip
 RUN cd /usr/local/src \
-    && cd php-7.1.17/ext/zip \
+    && cd php-7.1.26/ext/zip \
     && phpize \
     && ./configure \
     && make \
@@ -115,7 +115,7 @@ RUN cd /usr/local/src \
 
 # xmlrpc
 RUN cd /usr/local/src \
-    && cd php-7.1.17/ext/xmlrpc \
+    && cd php-7.1.26/ext/xmlrpc \
     && phpize \
     && ./configure \
     && make \
@@ -123,7 +123,7 @@ RUN cd /usr/local/src \
 
 # pdo_mysql
 RUN cd /usr/local/src \
-    && cd php-7.1.17/ext/pdo_mysql \
+    && cd php-7.1.26/ext/pdo_mysql \
     && phpize \
     && ./configure \
     && make \
@@ -131,7 +131,7 @@ RUN cd /usr/local/src \
 
 # mysqli
 RUN cd /usr/local/src \
-    && cd php-7.1.17/ext/mysqli \
+    && cd php-7.1.26/ext/mysqli \
     && phpize \
     && ./configure \
     && make \
@@ -139,9 +139,9 @@ RUN cd /usr/local/src \
 
 # stomp
 RUN cd /usr/local/src \
-    && curl -L -o stomp-2.0.1.tgz https://pecl.php.net/get/stomp-2.0.1.tgz \
-    && tar zxvf stomp-2.0.1.tgz \
-    && cd stomp-2.0.1 \
+    && curl -L -o stomp-2.0.2.tgz https://pecl.php.net/get/stomp-2.0.2.tgz \
+    && tar zxvf stomp-2.0.2.tgz \
+    && cd stomp-2.0.2 \
     && phpize \
     && ./configure \
     && make \
@@ -149,9 +149,9 @@ RUN cd /usr/local/src \
 
 # xdebug
 RUN cd /usr/local/src \
-    && curl -L -o xdebug-2.6.0.tgz https://pecl.php.net/get/xdebug-2.6.0.tgz \
-    && tar zxvf xdebug-2.6.0.tgz \
-    && cd xdebug-2.6.0 \
+    && curl -L -o xdebug-2.6.1.tgz https://pecl.php.net/get/xdebug-2.6.1.tgz \
+    && tar zxvf xdebug-2.6.1.tgz \
+    && cd xdebug-2.6.1 \
     && phpize \
     && ./configure \
     && make \
@@ -169,9 +169,9 @@ RUN cd /usr/local/src \
 
 # mongodb
 RUN cd /usr/local/src \
-    && curl -L -o mongodb-1.4.2.tgz https://pecl.php.net/get/mongodb-1.4.2.tgz \
-    && tar zxvf mongodb-1.4.2.tgz \
-    && cd mongodb-1.4.2 \
+    && curl -L -o mongodb-1.5.3.tgz https://pecl.php.net/get/mongodb-1.5.3.tgz \
+    && tar zxvf mongodb-1.5.3.tgz \
+    && cd mongodb-1.5.3 \
     && phpize \
     && ./configure \
     && make \
@@ -179,9 +179,9 @@ RUN cd /usr/local/src \
 
 # swoole
 RUN cd /usr/local/src \
-    && curl -L -o swoole-4.0.3.tgz https://pecl.php.net/get/swoole-4.0.3.tgz \
-    && tar zxvf swoole-4.0.3.tgz \
-    && cd swoole-4.0.3 \
+    && curl -L -o swoole-4.2.13.tgz https://pecl.php.net/get/swoole-4.2.13.tgz \
+    && tar zxvf swoole-4.2.13.tgz \
+    && cd swoole-4.2.13 \
     && phpize \
     && ./configure \
     && make \
@@ -199,9 +199,9 @@ RUN cd /usr/local/src \
 
 # memcached
 RUN cd /usr/local/src \
-    && curl -L -o memcached-3.0.4.tgz https://pecl.php.net/get/memcached-3.0.4.tgz \
-    && tar zxvf memcached-3.0.4.tgz \
-    && cd memcached-3.0.4 \
+    && curl -L -o memcached-3.1.3.tgz https://pecl.php.net/get/memcached-3.1.3.tgz \
+    && tar zxvf memcached-3.1.3.tgz \
+    && cd memcached-3.1.3 \
     && phpize \
     && ./configure \
     && make \
