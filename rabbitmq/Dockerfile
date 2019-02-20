@@ -1,4 +1,4 @@
-FROM rabbitmq:3.7.4
+FROM rabbitmq:3.7.11
 
 LABEL maintainer="Michael Chi <chicong@outlook.com>"
 
