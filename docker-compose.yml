@@ -41,6 +41,19 @@ services:
       - ${CODE_PATH}:/var/www/html
       - ${LOG_PATH}/php71-fpm:/var/log/php
 
+# php72-fpm
+
+  php72-fpm:
+    build:
+      context: ./php72-fpm
+    image: comoyi/php72-fpm:0.0.1
+    ports:
+      - ${PHP72_PORT}:9000
+    volumes:
+      - ./php72-fpm/conf:/usr/local/etc:ro
+      - ${CODE_PATH}:/var/www/html
+      - ${LOG_PATH}/php72-fpm:/var/log/php
+
 # nginx
 
   nginx:
