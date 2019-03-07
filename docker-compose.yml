@@ -66,6 +66,7 @@ services:
       - php56-fpm
       - php-fpm
       - php71-fpm
+      - php72-fpm
     volumes:
       - ./nginx/conf:/etc/nginx:ro
       - ${CODE_PATH}:/var/www/html
