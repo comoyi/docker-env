@@ -209,9 +209,9 @@ RUN cd /usr/local/src \
 
 # phalcon
 RUN cd /usr/local/src \
-    && curl -L -o phalcon-3.2.4.tar.gz https://github.com/phalcon/cphalcon/archive/v3.2.4.tar.gz \
-    && tar zxvf phalcon-3.2.4.tar.gz \
-    && cd cphalcon-3.2.4/build/ \
+    && curl -L -o phalcon-3.3.2.tar.gz https://github.com/phalcon/cphalcon/archive/v3.3.2.tar.gz \
+    && tar zxvf phalcon-3.3.2.tar.gz \
+    && cd cphalcon-3.3.2/build/ \
     && ./install
 
 RUN rm -rf /usr/local/src/*
