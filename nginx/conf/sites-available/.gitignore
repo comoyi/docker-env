@@ -1,6 +1,6 @@
 *
 !.gitignore
-!php56.com
-!php71.com
-!php72.com
-!test.com
+!php56.com.conf
+!php71.com.conf
+!php72.com.conf
+!test.com.conf
