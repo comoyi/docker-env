@@ -95,20 +95,20 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
 
-# postgres
+# PostgreSQL
 
-  postgres:
+  postgresql:
     build:
-      context: ./postgres
-    image: comoyi/postgres:10.8
+      context: ./postgresql
+    image: comoyi/postgresql:10.8
     ports:
-      - ${POSTGRES_PORT}:5432
+      - ${POSTGRESQL_PORT}:5432
     volumes:
-      - ${POSTGRES_DATA_PATH}:/var/lib/postgresql/data
+      - ${POSTGRESQL_DATA_PATH}:/var/lib/postgresql/data
     environment:
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRESQL_USER}
+      - POSTGRES_PASSWORD=${POSTGRESQL_PASSWORD}
+      - POSTGRES_DB=${POSTGRESQL_DB}
 
 # rabbitmq
 
