@@ -1,4 +1,4 @@
-FROM php:7.1.26-fpm
+FROM php:7.1.30-fpm
 
 LABEL maintainer="Michael Chi <chicong@outlook.com>"
 
@@ -16,6 +16,8 @@ RUN apt-get update && apt-get install -y \
     libmcrypt-dev \
 # for soap
     libxml2-dev \
+# for postgresql
+    libpq-dev \
 # for mongodb
     libssl-dev \
 # for swoole $server->connections
@@ -27,12 +29,12 @@ RUN apt-get update && apt-get install -y \
 
 # php
 RUN cd /usr/local/src \
-    && curl -L -o php-7.1.26.tar.gz http://php.net/get/php-7.1.26.tar.gz/from/this/mirror \
-    && tar zxvf php-7.1.26.tar.gz
+    && curl -L -o php-7.1.30.tar.gz https://www.php.net/distributions/php-7.1.30.tar.gz \
+    && tar zxvf php-7.1.30.tar.gz
 
 # gd
 RUN cd /usr/local/src \
-    && cd php-7.1.26/ext/gd \
+    && cd php-7.1.30/ext/gd \
     && phpize \
     && ./configure \
     --with-freetype-dir \
@@ -43,7 +45,7 @@ RUN cd /usr/local/src \
 
 # mcrypt
 RUN cd /usr/local/src \
-    && cd php-7.1.26/ext/mcrypt \
+    && cd php-7.1.30/ext/mcrypt \
     && phpize \
     && ./configure \
     && make \
@@ -51,7 +53,7 @@ RUN cd /usr/local/src \
 
 # bcmath
 RUN cd /usr/local/src \
-    && cd php-7.1.26/ext/bcmath \
+    && cd php-7.1.30/ext/bcmath \
     && phpize \
     && ./configure \
     && make \
@@ -59,7 +61,7 @@ RUN cd /usr/local/src \
 
 # pcntl
 RUN cd /usr/local/src \
-    && cd php-7.1.26/ext/pcntl \
+    && cd php-7.1.30/ext/pcntl \
     && phpize \
     && ./configure \
     && make \
@@ -67,7 +69,7 @@ RUN cd /usr/local/src \
 
 # gettext
 RUN cd /usr/local/src \
-    && cd php-7.1.26/ext/gettext \
+    && cd php-7.1.30/ext/gettext \
     && phpize \
     && ./configure \
     && make \
@@ -75,7 +77,7 @@ RUN cd /usr/local/src \
 
 # sysvsem
 RUN cd /usr/local/src \
-    && cd php-7.1.26/ext/sysvsem \
+    && cd php-7.1.30/ext/sysvsem \
     && phpize \
     && ./configure \
     && make \
@@ -83,7 +85,7 @@ RUN cd /usr/local/src \
 
 # shmop
 RUN cd /usr/local/src \
-    && cd php-7.1.26/ext/shmop \
+    && cd php-7.1.30/ext/shmop \
     && phpize \
     && ./configure \
     && make \
@@ -91,7 +93,7 @@ RUN cd /usr/local/src \
 
 # soap
 RUN cd /usr/local/src \
-    && cd php-7.1.26/ext/soap \
+    && cd php-7.1.30/ext/soap \
     && phpize \
     && ./configure \
     && make \
@@ -99,7 +101,7 @@ RUN cd /usr/local/src \
 
 # sockets
 RUN cd /usr/local/src \
-    && cd php-7.1.26/ext/sockets \
+    && cd php-7.1.30/ext/sockets \
     && phpize \
     && ./configure \
     && make \
@@ -107,7 +109,7 @@ RUN cd /usr/local/src \
 
 # zip
 RUN cd /usr/local/src \
-    && cd php-7.1.26/ext/zip \
+    && cd php-7.1.30/ext/zip \
     && phpize \
     && ./configure \
     && make \
@@ -115,15 +117,23 @@ RUN cd /usr/local/src \
 
 # xmlrpc
 RUN cd /usr/local/src \
-    && cd php-7.1.26/ext/xmlrpc \
+    && cd php-7.1.30/ext/xmlrpc \
     && phpize \
     && ./configure \
     && make \
     && make install
 
-# pdo_mysql
+# postgresql
 RUN cd /usr/local/src \
-    && cd php-7.1.26/ext/pdo_mysql \
+    && cd php-7.1.30/ext/pgsql \
+    && phpize \
+    && ./configure \
+    && make \
+    && make install
+
+# pdo_postgresql
+RUN cd /usr/local/src \
+    && cd php-7.1.30/ext/pdo_pgsql \
     && phpize \
     && ./configure \
     && make \
@@ -131,7 +141,15 @@ RUN cd /usr/local/src \
 
 # mysqli
 RUN cd /usr/local/src \
-    && cd php-7.1.26/ext/mysqli \
+    && cd php-7.1.30/ext/mysqli \
+    && phpize \
+    && ./configure \
+    && make \
+    && make install
+
+# pdo_mysql
+RUN cd /usr/local/src \
+    && cd php-7.1.30/ext/pdo_mysql \
     && phpize \
     && ./configure \
     && make \
