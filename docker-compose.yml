@@ -1,4 +1,4 @@
-version: '3'
+version: '3.7'
 
 services:
 
@@ -53,6 +53,19 @@ services:
       - ./php72-fpm/conf:/usr/local/etc:ro
       - ${CODE_PATH}:/var/www/html
       - ${LOG_PATH}/php72-fpm:/var/log/php
+
+# php73
+
+  php73:
+    build:
+      context: ./php73
+    image: comoyi/php73:0.0.1
+    ports:
+      - ${PHP73_PORT}:9000
+    volumes:
+      - ./php73/conf:/usr/local/etc:ro
+      - ${CODE_PATH}:/var/www/html
+      - ${LOG_PATH}/php73:/var/log/php
 
 # nginx
 
