@@ -80,6 +80,7 @@ services:
       - php-fpm
       - php71-fpm
       - php72-fpm
+      - php73
     volumes:
       - ./nginx/conf:/etc/nginx:ro
       - ${CODE_PATH}:/var/www/html

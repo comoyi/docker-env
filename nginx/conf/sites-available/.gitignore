@@ -1,6 +1,7 @@
 *
 !.gitignore
+!test.com.conf
 !php56.com.conf
 !php71.com.conf
 !php72.com.conf
-!test.com.conf
+!php73.com.conf
