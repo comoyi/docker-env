@@ -1,10 +1,8 @@
 *
 !.gitignore
-!php56/
-!php56/phpinfo.php
-!php71/
-!php71/phpinfo.php
-!php72/
-!php72/phpinfo.php
 !test
 !test/*
+!php56/
+!php71/
+!php72/
+!php73/

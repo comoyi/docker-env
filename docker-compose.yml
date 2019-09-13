@@ -54,6 +54,19 @@ services:
       - ${CODE_PATH}:/var/www/html
       - ${LOG_PATH}/php72-fpm:/var/log/php
 
+# php73
+
+  php73:
+    build:
+      context: ./php73
+    image: comoyi/php73:0.0.1
+    ports:
+      - ${PHP73_PORT}:9000
+    volumes:
+      - ./php73/conf:/usr/local/etc:ro
+      - ${CODE_PATH}:/var/www/html
+      - ${LOG_PATH}/php73:/var/log/php
+
 # nginx
 
   nginx:
@@ -67,6 +80,7 @@ services:
       - php-fpm
       - php71-fpm
       - php72-fpm
+      - php73
     volumes:
       - ./nginx/conf:/etc/nginx:ro
       - ${CODE_PATH}:/var/www/html
