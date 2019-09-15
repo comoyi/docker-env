@@ -1,4 +1,4 @@
-FROM redis:4.0.12
+FROM redis:5.0.5
 
 LABEL maintainer="Michael Chi <chicong@outlook.com>"
 
